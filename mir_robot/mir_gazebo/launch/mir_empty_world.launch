@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="gui" default="true" />
+  <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable, but can also be an absolute path -->
+
+  <arg name="robot_x"   default="0.0" />
+  <arg name="robot_y"   default="0.0" />
+  <arg name="robot_yaw" default="0.0" />
+
+  <arg name="robot_x2"   default="0.0" />
+  <arg name="robot_y2"   default="5.0" />
+  <arg name="robot_yaw2" default="0.0" />
+
+
+
+
+  <!-- Duplicate of the above in case namespace is empty. This is necessary to
+       avoid the "<group> tag has an empty 'ns' attribute" parsing error. -->
+  <group>
+    <group>
+      <remap from="robot1/joint_states"                   to="robot1/mir/joint_states" />
+      <remap from="robot1/mobile_base_controller/cmd_vel" to="robot1/cmd_vel" />
+      <remap from="robot1/mobile_base_controller/odom"    to="robot1/odom" />
+
+      <remap from="robot2/joint_states"                   to="robot2/mir/joint_states" />
+      <remap from="robot2/mobile_base_controller/cmd_vel" to="robot2/cmd_vel" />
+      <remap from="robot2/mobile_base_controller/odom"    to="robot2/odom" />
+
+      <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)"/>
+        <arg name="paused" value="true" />
+        <arg name="gui" value="$(arg gui)" />
+      </include>
+
+    </group>
+
+    <group ns="robot1">
+      <arg name="tf_prefix1" default="robot1"/>
+      <include file="$(find mir_gazebo)/launch/mir_gazebo_common.launch">
+        <arg name="robot_x"   value="$(arg robot_x)" />
+        <arg name="robot_y"   value="$(arg robot_y)" />
+        <arg name="robot_yaw" value="$(arg robot_yaw)" />
+        <arg name="tf_prefix" value="$(arg tf_prefix1)" />
+        <arg name="model_name" value="robot1" />
+      </include>
+    </group>
+
+    <group ns="robot2">
+      <arg name="tf_prefix2" default="robot2"/>
+      <include file="$(find mir_gazebo)/launch/mir_gazebo_common.launch">
+        <arg name="robot_x"   value="$(arg robot_x2)" />
+        <arg name="robot_y"   value="$(arg robot_y2)" />
+        <arg name="robot_yaw" value="$(arg robot_yaw2)" />
+        <arg name="tf_prefix" value="$(arg tf_prefix2)" />
+        <arg name="model_name" value="robot2" />
+      </include>
+    </group>
+  </group>
+</launch>
