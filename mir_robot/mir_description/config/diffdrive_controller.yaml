@@ -40,3 +40,26 @@ mobile_base_controller:
       max_velocity           : 1.5  # rad/s; move_base max_rot_vel: 1.0
       has_acceleration_limits: true
       max_acceleration       : 2.5  # rad/s^2; move_base acc_lim_th: 2.0
+
+cartesian_velocity_controller:
+  type: cartesian_controller/CartesianVelocityController
+  publish_rate: 125
+  root_name: $(arg tf_prefix)_ur5ebase_link
+  tip_name: $(arg tf_prefix)_ur5ewrist_3_link
+  joints:
+    - $(arg tf_prefix)_ur5eshoulder_pan_joint
+    - $(arg tf_prefix)_ur5eshoulder_lift_joint
+    - $(arg tf_prefix)_ur5eelbow_joint
+    - $(arg tf_prefix)_ur5ewrist_1_joint
+    - $(arg tf_prefix)_ur5ewrist_2_joint
+    - $(arg tf_prefix)_ur5ewrist_3_joint
+
+# Gripper controller
+gripper_controller:
+  type: position_controllers/GripperActionController
+  joint: $(arg tf_prefix)robotiq_85_left_knuckle_joint
+  action_monitor_rate: 20
+  goal_tolerance: 0.002
+  max_effort: 100
+  stall_velocity_threshold: 0.001
+  stall_timeout: 1.0

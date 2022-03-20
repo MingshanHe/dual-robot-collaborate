@@ -76,13 +76,13 @@
   <gazebo>
       <plugin name="ft_sensor_plugin" filename="libgazebo_ros_ft_sensor.so">
       <updateRate>250.0</updateRate>
-      <topicName>ft_sensor/raw</topicName>
+      <topicName>wrench</topicName>
       <gaussianNoise>0.0</gaussianNoise>
       <jointName>$(arg tf_prefix)_ur5ewrist_3_joint</jointName>
       </plugin>
   </gazebo>
 
-  <!-- Gazebo grasping plugin -->
+  <!-- Gazebo plugin -->
   <gazebo>
       <gripper name="gazebo_gripper">
       <grasp_check>

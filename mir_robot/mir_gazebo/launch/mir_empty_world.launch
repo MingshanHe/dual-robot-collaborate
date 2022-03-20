@@ -43,6 +43,15 @@
         <arg name="tf_prefix" value="$(arg tf_prefix1)" />
         <arg name="model_name" value="robot1" />
       </include>
+
+      <!-- <arg name="TOPIC_ARM_STATE" default="$(arg tf_prefix1)/cartesian_velocity_controller_sim/ee_state"/>
+      <arg name="TOPIC_ARM_COMMAND" default="$(arg tf_prefix1)/cartesian_velocity_controller_sim/command_cart_vel"/>
+      <arg name="TOPIC_WRENCH_STATE" default="$(arg tf_prefix1)/wrench"/>
+      <param name="topic_arm_state" value="$(arg TOPIC_ARM_STATE)"/>
+      <param name="topic_arm_command" value="$(arg TOPIC_ARM_COMMAND)"/>
+      <param name="topic_wrench_state" value="$(arg TOPIC_WRENCH_STATE)"/>
+      <rosparam file="$(find admittance)/config/AdmittanceParams.yaml" command="load"/>
+      <node pkg="Admittance" name="Admittance1" type="Admittance_node" output="screen"/> -->
     </group>
 
     <group ns="robot2">
@@ -54,6 +63,15 @@
         <arg name="tf_prefix" value="$(arg tf_prefix2)" />
         <arg name="model_name" value="robot2" />
       </include>
+
+      <!-- <arg name="TOPIC_ARM_STATE" default="$(arg tf_prefix2)/cartesian_velocity_controller_sim/ee_state"/>
+      <arg name="TOPIC_ARM_COMMAND" default="$(arg tf_prefix2)/cartesian_velocity_controller_sim/command_cart_vel"/>
+      <arg name="TOPIC_WRENCH_STATE" default="$(arg tf_prefix2)/wrench"/>
+      <param name="topic_arm_state" value="$(arg TOPIC_ARM_STATE)"/>
+      <param name="topic_arm_command" value="$(arg TOPIC_ARM_COMMAND)"/>
+      <param name="topic_wrench_state" value="$(arg TOPIC_WRENCH_STATE)"/>
+      <rosparam file="$(find admittance)/config/AdmittanceParams.yaml" command="load"/>
+      <node pkg="Admittance" name="Admittance2" type="Admittance_node" output="screen"/> -->
     </group>
   </group>
 </launch>
