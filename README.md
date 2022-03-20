@@ -1,0 +1,1 @@
+roslaunch mir_gazebo mir_empty_world.launch 
