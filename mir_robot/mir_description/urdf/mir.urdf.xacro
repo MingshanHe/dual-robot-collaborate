@@ -9,7 +9,8 @@
   <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro"/>
   <!-- RG2 Gripper base -->
   <xacro:include filename="$(find robotiq_description)/urdf/robotiq_85_gripper.urdf.xacro" />
-
+  <!-- Kinect V2 base -->
+  <xacro:include filename="$(find kinect_v2)/urdf/kinect_v2.urdf.xacro" />
 
   <xacro:arg name="tf_prefix" default="" />
 
@@ -24,7 +25,7 @@
   <xacro:mir_100 prefix="${prefix}"/>
 
 
-  <!-- MIR + UR5E + Robotiq-->
+  <!-- MIR + UR5E + Robotiq + Kinect V2-->
   <xacro:ur5e_robot prefix="${tf_prefix}_ur5e" />
 
   <joint name="${tf_prefix}_ur5e_fixed_joint" type="fixed">
@@ -69,7 +70,15 @@
     <child link="$(arg tf_prefix)robotiq_coupler"/>
   </joint>
 
-  <!-- Gazebo FT sensor plugin -->
+  <xacro:kinect_v2  parent="$(arg tf_prefix)_ur5etool0">
+    <origin xyz="0.0 0.0 0"
+            rpy="0 0 0" />
+  </xacro:kinect_v2>
+
+
+
+
+  <!-- Gazebo plugin -->
   <gazebo reference="$(arg tf_prefix)_ur5ewrist_3_joint">
     <provideFeedback>true</provideFeedback>
   </gazebo>
@@ -82,7 +91,7 @@
       </plugin>
   </gazebo>
 
-  <!-- Gazebo plugin -->
+
   <gazebo>
       <gripper name="gazebo_gripper">
       <grasp_check>
