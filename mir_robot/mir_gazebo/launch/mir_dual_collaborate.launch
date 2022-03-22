@@ -4,11 +4,11 @@
     <arg name="world_name" default="$(find mir_gazebo)/worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable, but can also be an absolute path -->
 
     <arg name="robot_x"   default="0.0" />
-    <arg name="robot_y"   default="0.0" />
+    <arg name="robot_y"   default="0.5" />
     <arg name="robot_yaw" default="0.0" />
 
     <arg name="robot_x2"   default="0.0" />
-    <arg name="robot_y2"   default="5.0" />
+    <arg name="robot_y2"   default="4.5" />
     <arg name="robot_yaw2" default="0.0" />
 
     <group>
