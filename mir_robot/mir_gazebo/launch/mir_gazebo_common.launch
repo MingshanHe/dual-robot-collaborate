@@ -31,7 +31,7 @@
 
   <!-- EKF -->
   <include file="$(find mir_gazebo)/launch/includes/ekf.launch.xml">
-      <arg name="tf_prefix" value="$(arg prefix)" />
+      <arg name="tf_prefix" value="$(arg tf_prefix)" />
   </include>
 
   <!-- Add passive + mimic joints to joint_states topic -->
@@ -69,10 +69,6 @@
   <include file="$(find admittance)/launch/Admittance.launch">
     <arg name="tf_prefix" value="$(arg tf_prefix)" />
   </include>
-
-  <!-- <include file="$(find mir_navigation)/launch/hector_mapping.launch">
-    <arg name="prefix" value="$(arg tf_prefix)" />
-  </include> -->
 
   <include file="$(find mir_navigation)/launch/move_base.xml">
     <arg name="prefix" value="$(arg tf_prefix)/" />

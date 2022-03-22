@@ -1,0 +1,16 @@
+<launch>
+    <arg name="prefix" default=""/>
+    <!-- Gmapping -->
+    <node pkg="gmapping" type="slam_gmapping" name="turtlebot3_slam_gmapping" output="screen">
+      <param name="base_frame" value="$(arg prefix)/base_footprint"/>
+      <param name="odom_frame" value="$(arg prefix)/odom"/>
+      <param name="map_frame"  value="$(arg prefix)/map"/>
+      <param name="map_update_interval" value="2.0" />
+      <param name="delta" value="0.025" />
+      <param name="xmin" value="-20" />
+      <param name="xmax" value="20" />
+      <param name="ymin" value="-20" />
+      <param name="ymax" value="20" />
+      <param name="particles" value="50" />
+    </node>
+  </launch>

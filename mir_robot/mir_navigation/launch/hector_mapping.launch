@@ -1,24 +1,18 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="prefix" default=""/> 
-  <arg name="tf_map_scanmatch_transform_frame_name" value="$(arg prefix)/scanmatcher_frame"/>
-  <arg name="base_frame" value="$(arg prefix)/base_footprint"/>
-  <arg name="odom_frame" value="$(arg prefix)/odom"/>
+
   <arg name="pub_map_odom_transform" default="true"/>
   <arg name="scan_subscriber_queue_size" default="5"/>
-  <arg name="scan_topic" value="$(arg prefix)/scan"/>
   <arg name="map_size" default="2048"/>
-    <!-- set use_tf_pose_start_estimate and map_with_known_poses to `true` when
-         the map-base_footprint transform is provided by a different node, such
-         as fake_localization -->
   <arg name="disable_localization" default="false"/>
 
-  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+  <node pkg="hector_mapping" type="hector_mapping" name="robot_hector_mapping" output="screen">
 
     <!-- Frame names -->
     <param name="map_frame" value="$(arg prefix)map" />
-    <param name="base_frame" value="$(arg base_frame)" />
-    <param name="odom_frame" value="$(arg odom_frame)" />
+    <param name="base_frame" value="$(arg prefix)/base_footprint" />
+    <param name="odom_frame" value="$(arg prefix)/odom" />
 
     <!-- Tf use -->
     <param name="use_tf_scan_transformation" value="true"/>
@@ -49,14 +43,14 @@
     <param name="advertise_map_service" value="true"/>
 
     <param name="scan_subscriber_queue_size" value="$(arg scan_subscriber_queue_size)"/>
-    <param name="scan_topic" value="$(arg scan_topic)"/>
+    <param name="scan_topic" value="$(arg prefix)/scan"/>
     <param name="pose_update_topic" value="poseupdate" />
     <param name="sys_msg_topic" value="syscommand" />
     <param name="pub_odometry" value="false" />
 
-    <param name="tf_map_scanmatch_transform_frame_name" value="$(arg tf_map_scanmatch_transform_frame_name)" />
+    <param name="tf_map_scanmatch_transform_frame_name" value="$(arg prefix)/scanmatcher_frame" />
 
-    <remap from="$(arg prefix)map" to="/$(arg prefix)map" />
+    <!-- <remap from="$(arg prefix)map" to="/$(arg prefix)map" /> -->
   </node>
 
 </launch>

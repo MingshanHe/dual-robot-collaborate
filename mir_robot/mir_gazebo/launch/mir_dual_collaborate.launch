@@ -38,6 +38,9 @@
                 <arg name="tf_prefix" value="$(arg tf_prefix1)" />
                 <arg name="model_name" value="robot1" />
             </include>
+            <include file="$(find mir_navigation)/launch/gmapping_mapping.launch">
+                <arg name="prefix" value="robot1"/>
+            </include>
         </group>
 
         <group ns="robot2">
@@ -48,6 +51,9 @@
                 <arg name="robot_yaw" value="$(arg robot_yaw2)" />
                 <arg name="tf_prefix" value="$(arg tf_prefix2)" />
                 <arg name="model_name" value="robot2" />
+            </include>
+            <include file="$(find mir_navigation)/launch/gmapping_mapping.launch">
+                <arg name="prefix" value="robot2"/>
             </include>
         </group>
 
